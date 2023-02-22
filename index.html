@@ -39,42 +39,45 @@
 </head>
 
 <body>
-  
+
   <!-- App container -->
   <div class="app">
 
-      <!-- Header -->
-      <header class="header">
-        <h1 class="header__h1">To do list</h1>
-      </header>
-      
-      <!-- Main -->
-      <main class="main">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="header__h1">To do list</h1>
+    </header>
 
-        <!-- Task -->
-        <article class="task">
-          <input type="checkbox" class="task__input">
-          <h2 class="task__h2">Test of task #1</h2>
+    <!-- Main -->
+    <main class="main">
 
-          <div class="task__icons">
-            <img src="./public/icon-edit.svg" alt="Edit icon" class="task__icon">
-            <img src="./public/icon-remove.svg" alt="Remove icon" class="task__icon">
-          </div>
-        </article>
+      <!-- Task -->
+      <article class="task">
+        <div class="task__content">
+          <input type="checkbox" id="input-check" class="checkbox">
+          <label for="input-check" class="checkbox__label"></label>
+          <h2 class="task__h2">Prueba</h2>
+        </div>
 
-      </main>
+        <div class="task__icons">
+          <img src="./public/icon-edit.svg" alt="Edit icon" class="task__icon">
+          <img src="./public/icon-remove.svg" alt="Remove icon" class="task__icon">
+        </div>
+      </article>
 
-      <!-- Footer -->
-      <div class="footer">
-        <!-- Form -->
-          <form action="#" method="post" class="form">
-            <input type="text" id="input-text" class="form__input">
+    </main>
 
-            <button type="submit" class="form__button">
-              <img src="./public/icon-add.svg" alt="Add icon" class="form__icon">
-            </button>
-          </form>
-      </div>
+    <!-- Footer -->
+    <footer class="footer">
+      <!-- Form -->
+      <form action="#" method="post" class="form">
+        <input type="text" id="input-text" class="form__input">
+
+        <button type="submit" class="form__button">
+          <img src="./public/icon-add.svg" alt="Add icon" class="form__icon">
+        </button>
+      </form>
+    </footer>
   </div>
 
 </body>

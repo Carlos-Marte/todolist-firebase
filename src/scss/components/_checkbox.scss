@@ -1,0 +1,17 @@
+// Custom checkbox
+.checkbox {
+    display: none;
+}
+
+.checkbox__label {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $black;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+input[type="checkbox"]:checked + label {
+    background: $main-color-2;
+    border: none;
+}

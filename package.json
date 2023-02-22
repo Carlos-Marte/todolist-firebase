@@ -1,0 +1,19 @@
+{
+  "name": "todolist-firebase",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --open",
+    "build": "vite build",
+    "preview": "vite preview --open",
+    "sass-dev": "sass --watch --update --style=expanded src/scss:src/css"
+  },
+  "devDependencies": {
+    "vite": "^4.1.0"
+  },
+  "dependencies": {
+    "firebase": "^9.17.1",
+    "sass": "^1.58.3"
+  }
+}

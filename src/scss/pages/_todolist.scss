@@ -51,6 +51,10 @@ body {
     @include set-bdr-ot;
 }
 
+.form__input::selection {
+    background: $main-color;
+}
+
 .form__button {
     background: transparent;
     @include set-bdr-ot;

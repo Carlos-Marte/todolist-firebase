@@ -1,0 +1,4 @@
+@mixin set-bdr-ot ($border: none, $outline: none) {
+    border: $border;
+    outline: $outline;
+}

@@ -17,9 +17,13 @@
     word-break: break-all;
 }
 
-.task__h2 {
+.task__text {
+    width: 100%;
+    max-height: 25px;
     font-weight: 400;
-    font-size: 1.25em;
+    font-size: 1.5em;
+    resize: none;
+    @include set-bdr-ot;
 }
 
 .task__icons {

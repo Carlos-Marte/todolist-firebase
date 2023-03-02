@@ -1,10 +1,13 @@
 import { addTask } from "../db/addTask";
 import { onGetTask } from "../db/getTasks";
 import { removeTask } from "../db/removeTask";
+import { updateTask } from "../db/updateTask";
 import { sendAlertMessage } from "../Messages/alertMessage";
 
 const formAddTask = document.querySelector("#form-add-task");
 const taskContainer = document.querySelector("#task-container");
+
+let edit = false;
 
 // Get tasks
 onGetTask((querySnapshot) => {
@@ -18,10 +21,10 @@ onGetTask((querySnapshot) => {
             <article class="task">
                 <div class="task__content">
                     ${data.completed === true ? `<input type="checkbox" checked id="${id}" class="checkbox">`
-                : `<input type="checkbox" id="${id}" class="checkbox">`}
+                                              : `<input type="checkbox" id="${id}" class="checkbox">`}
                     <label for="${id}" class="checkbox__label"></label>
     
-                    <textarea readonly id="input-text" class="task__text">${data.task}</textarea>
+                    <textarea maxlength="30" readonly id="input-text" class="task__text">${data.task}</textarea>
                 </div>
     
                 <div class="task__icons">
@@ -36,20 +39,54 @@ onGetTask((querySnapshot) => {
 
 // Remove and Edit tasks [Trash code]
 taskContainer.addEventListener('click', (e) => {
-    const targetClass = e.target.classList[1];
+    const targetClass = e.target.classList[1] === undefined ? e.target.classList[0] : e.target.classList[1];
     
-    if(targetClass === "task__icon--remove") {
+    // Remove
+    if (targetClass === "task__icon--remove") {
         const targetId = e.target.parentElement.previousElementSibling.firstElementChild.id;
         removeTask(targetId);
-    } else if (targetClass === "task__icon--edit") {
-        console.log("edit");
+
+    }
+    
+    // Edit
+    if (targetClass === "task__icon--edit") {
+        const targetId = e.target.parentElement.previousElementSibling.firstElementChild.id;
+        const textArea = e.target.parentElement.previousElementSibling.lastElementChild;
+        
+        if (!edit) {
+            textArea.removeAttribute("readonly");
+            textArea.focus();
+            edit = true;
+            
+        } else {
+            textArea.setAttribute("readonly", "");
+            
+            if(textArea.value !== "") {
+                updateTask(targetId, {
+                    task: textArea.value.trim()
+                });
+            } else {
+                sendAlertMessage("No puedes dejar una tarea vacía.", "bad");
+            }
+            
+            edit = false;
+        }
+    }
+
+    // Edit status of the task
+    if(targetClass === "checkbox") {
+        const targetId = e.target.id;
+
+        updateTask(targetId, {
+            completed: e.target.checked
+        });
     }
 })
 
 // Add task
 formAddTask.addEventListener('submit', (e) => {
     e.preventDefault();
-
+    
     const textTask = formAddTask["input-add"].value.trim();
 
     if (textTask === "") {
